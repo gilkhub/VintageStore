@@ -22,12 +22,14 @@ public class VintageStoreTest extends TestCase
          *
          * 1. searchResultsobj has methods for each element (item name, preview button etc.) that return corresponding WebElement.
          *
-         * 2. JSONObject / JSONarray does not maintain order so we will have to iterate over all items in dbSearchResults until we find the required object.
          *
-         * 3. JSONObjects can be easily converted to Java objects and vice versa with Gson.
+         * 2. JSONObjects can be easily converted to Java objects and vice versa with Gson.
          *
-         * 4. in each iteration We will compare (make an assertion) the attributes on WebElement.getText()
-         *    or the given source (src) and the respective attribute.
+         * 4. We will iterate over the items of searchResultsobj.resultItemsArrList
+         *    in each iteration we'll assert that the WebElement is in dbSearchResults object,
+         *    We will compare (make an assertion) the attributes on (WebElement.getText() / src / etc.)
+         *    and the respective attribute.
+         *    in the last iteration, if searchResultsobj.nextPageButton.isEnabled() we will click on by that keep on iterating over the new searchResultsobj.resultItemsArrList
          *
          * 5. if no AssertionError was thrown, the test will pass.
          */
@@ -45,15 +47,14 @@ public class VintageStoreTest extends TestCase
          *
          * 1. searchResultsobj has methods for each element (item name, preview button etc.) that return corresponding WebElement.
          *
-         * 2. JSONObject / JSONarray does not maintain order so we will have to iterate
-         *    over all items in dbSearchResults until we find the required object.
          *
-         * 3. in each iteration We will compare (make an assertion) the year's WebElement.getText()
+         * 2. in each iteration We will compare (make an assertion) the year's WebElement.getText()
          *    and the respective attribute in search result object.
-         *    We will make the correct assertion (“audio is playing” / “video is playing” etc.)
-         *    by checking the item type first (more ways to do it).
+         *    if the year is bigger than "year" param,
+         *    We will make the correct assertion (“audio is playing” / “video is playing” etc.) after clicking the preview button.
+         *    we'll get the expected year by checking the item type.
          *
-         * 4. if no AssertionError was thrown, the test will pass.
+         * 3. if no AssertionError was thrown, the test will pass.
          */
     }
 }
